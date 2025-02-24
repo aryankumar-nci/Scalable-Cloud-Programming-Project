@@ -18,14 +18,14 @@ from django.contrib import admin
 from django.urls import path
 
 # importing the settings for the project
-#from django.conf import settings
+from django.conf import settings
 
 #importing the static media files and connect from the settings 
-#from django.conf.urls.static import static
+from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
 ]
 
 #unique page for the images, when image is uploaded it goes on this path
-#urlpatterns += static(settings.MEDIA_URL, document_root= settings.MEDIA_ROOT)
+urlpatterns += static(settings.MEDIA_URL, document_root= settings.MEDIA_ROOT)
