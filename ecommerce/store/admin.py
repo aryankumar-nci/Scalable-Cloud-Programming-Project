@@ -4,7 +4,7 @@ from django.contrib import admin
 
 from .models import Category, Product
 
-#for prepopulated field
+#for prepopulated field in the Category field in admin
 @admin.register(Category)
 class CategoryAdmin(admin.ModelAdmin):
     
