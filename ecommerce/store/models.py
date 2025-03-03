@@ -18,6 +18,10 @@ class Category(models.Model):
     
 class Product(models.Model):
     
+    #forign key here to linK products to the category
+    # if the category is deleted then product associated with it would also deleted.
+    category = models.ForeignKey(Category, related_name='product', on_delete=models.CASCADE, null=True)
+    
     title = models.CharField(max_length=250)
     
     brand = models.CharField(max_length=250, default='un-branded')
