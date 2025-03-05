@@ -1,11 +1,14 @@
 from django.shortcuts import render
 
-from .models import Category
-# Create your views here.
+from .models import Category, Product
 
 def store(request):
+    #brings all product from db to the frontpage
+    all_products = Product.objects.all()
     
-    return render(request, 'store/store.html')
+    context= {'my_products': all_products}
+    
+    return render(request, 'store/store.html', context)
 
 # nav bar categories, will be availible in all pages.
 def categories(request):
