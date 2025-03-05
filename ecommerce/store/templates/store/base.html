@@ -90,8 +90,16 @@
                             <a class="dropdown-item" href="{% url 'store' %}"> All </a>
                         
                         </li>
-                    
-        
+                    <!--loop for the categories navbar-->
+                        {% for category in all_categories %}
+
+                        <li>
+                            <!-- This will include all the categories present-->
+                            <a class="dropdown-item" href=""> {{ category.name | capfirst}} </a>
+                        
+                        </li>
+
+                        {% endfor %}
                     
                     </ul>
 
