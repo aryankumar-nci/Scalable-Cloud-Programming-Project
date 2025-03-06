@@ -1,5 +1,8 @@
 from django.db import models
 
+# this will allow to create own url for products
+from django.urls import reverse
+
 class Category(models.Model):
     
     name = models.CharField(max_length=250, db_index=True)
@@ -10,11 +13,13 @@ class Category(models.Model):
         
         verbose_name_plural = 'categories'
     
-    
     #Category (1) , category (2) --shirts , Shoes   
     def __str__(self):
         
-        return self.name    
+        return self.name  
+      
+    #def get_absolute_url(self):
+     #   return reverse('list-category', args=[self.slug])
     
 class Product(models.Model):
     
@@ -44,3 +49,8 @@ class Product(models.Model):
     def __str__(self):
         # returns product actual name instead of title only.
         return self.title   
+    
+    # for custom url for products, will get to the product individual page.
+    def get_absolute_url(self):
+        return reverse('product-info', args=[self.slug])
+    
