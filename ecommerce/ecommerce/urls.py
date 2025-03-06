@@ -24,8 +24,18 @@ from django.conf import settings
 from django.conf.urls.static import static
 
 urlpatterns = [
+    
+    #admin url
+    
     path('admin/', admin.site.urls),
+    
+    #store app
+    
     path('',include('store.urls')),
+    
+    #cart app
+    
+    path('cart/', include('carts.urls')),
 ]
 
 #unique page for the images, when image is uploaded it goes on this path
