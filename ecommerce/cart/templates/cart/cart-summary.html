@@ -3,6 +3,7 @@
 
 {% load static %}
 
+{% load mathfilters %}
 
 {% block content %}
 
@@ -49,7 +50,8 @@
               
                 <div class="col-6"> Product </div>
               
-                <div class="col-6 text-end"><span class="h6 fw-bold">$ {{product.price}}<!-- Product price --> </span></div>
+                <!-- Product price -->
+                <div class="col-6 text-end"><span class="h6 fw-bold">$ {{product.price|mul:item.qty}} </span></div>
             
               </div>
             
