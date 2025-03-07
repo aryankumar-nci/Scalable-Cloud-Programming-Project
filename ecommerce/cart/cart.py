@@ -33,4 +33,11 @@ class Cart():
         
         self.session.modified = True
         
+    # this will remember the cart item in current session
+    
+    def __len__(self):
+        
+        return sum(item['qty'] for item in self.cart.values())
+         
+        
                 
