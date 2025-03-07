@@ -37,6 +37,31 @@ class Cart():
         
         self.session.modified = True
         
+        
+        
+    # delete from the cart 
+        
+    def delete(self,product):
+        
+        product_id = str(product)
+        
+        if product_id in self.cart:
+            
+            del self.cart[product_id]
+            
+        self.session.modified = True
+        
+        
+        
+            
+        
+        
+        
+        
+        
+        
+        
+        
     # this will remember the cart item in current session
     
     def __len__(self):
