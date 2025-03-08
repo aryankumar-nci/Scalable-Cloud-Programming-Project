@@ -36,6 +36,11 @@ urlpatterns = [
     #cart app
     
     path('cart/', include('cart.urls')),
+    
+    
+    #account app
+    
+    path('account/', include('account.urls')),
 ]
 
 #unique page for the images, when image is uploaded it goes on this path
