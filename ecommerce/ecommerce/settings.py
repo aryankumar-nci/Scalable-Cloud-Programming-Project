@@ -160,6 +160,6 @@ EMAIL_USE_TLS ='True'
 
 # seeting up for email feature.
 
-EMAIL_HOST_USER = 'aryannci2024@gmail.com' 
+EMAIL_HOST_USER = 'aryannci2024@gmail.com' # host email that sends the password reset email.
 EMAIL_HOST_PASSWORD = 'kgqunysxddiaygiy'
 
