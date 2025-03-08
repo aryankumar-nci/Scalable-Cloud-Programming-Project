@@ -43,7 +43,11 @@ def register(request):
                 'token':user_tokenizer_generate.make_token(user),
                 
                 
-                         })
+            })
+            
+            user.email_user(subject=subject, message=message)
+            
+            
             
             return redirect('email-verification-sent')
         
