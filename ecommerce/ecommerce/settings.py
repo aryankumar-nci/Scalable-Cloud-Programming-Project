@@ -46,9 +46,15 @@ INSTALLED_APPS = [
     
     'mathfilters', #mathfilter 
     
-    
-    
+    'crispy_forms' #django crispy-forms
+       
 ]
+
+
+# adding bootstrap in the forms
+CRISPY_TEMPLATE_PACK = 'bootstrap'
+
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
