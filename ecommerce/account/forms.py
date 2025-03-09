@@ -51,6 +51,27 @@ class LoginForm(AuthenticationForm):
     
     username = forms.CharField(widget=TextInput())
     password = forms.CharField(widget=PasswordInput())
+    
+    
+#update form
+
+class UpdateUserForm(forms.ModelForm):
+    
+    password = None
+    
+     # accessing fields that are defined in user models.    
+    def __init__(self, *args , **kwargs):
+        super(UpdateUserForm,self).__init__ (*args, **kwargs)
+        
+        # makes email field as required.
+        self.fields['email'].required = True
+    
+    class Meta:
+        
+        model = User
+        
+        fields = ['username','email']
+        exclude = ['password1','password2']    
 
 
 
