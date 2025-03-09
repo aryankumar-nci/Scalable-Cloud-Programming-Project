@@ -41,6 +41,11 @@ urlpatterns = [
     #account app
     
     path('account/', include('account.urls')),
+    
+    #paymet app
+    
+    path('payment/',include('payment.urls')),
+    
 ]
 
 #unique page for the images, when image is uploaded it goes on this path
