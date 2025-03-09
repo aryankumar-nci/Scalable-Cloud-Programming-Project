@@ -1,6 +1,11 @@
 from django.shortcuts import render, redirect
 
 from .forms import CreateUserForm, LoginForm,UpdateUserForm
+
+from payment.forms import ShippinForm
+from payment.models import ShippingAddress
+
+
 from django.contrib.auth.models import User
 
 from django.contrib.sites.shortcuts import get_current_site
@@ -182,3 +187,52 @@ def delete_account(request):
         return redirect('store')
     
     return render(request,'account/delete-account.html')
+
+
+
+
+
+#Shipping view
+@login_required(login_url='my-login')
+def manage_shipping(request):
+    
+    try:
+        #account user with shipment information
+        
+        shipping = ShippingAddress.objects.get(user=request.user.id)
+        
+    except ShippingAddress.DoesNotExist:
+        
+        #account user with no shipment information
+        shipping = None    
+
+    form = ShippinForm(instance=shipping)
+    
+    
+    if request.method == 'POST':
+        
+        form = ShippinForm(request.POST, instance=shipping)
+        
+        if form.is_valid():
+            
+            #assign the user forign key on object 
+            
+            shipping_user = form.save(commit=False)
+            
+            #adding forign key itself
+            shipping_user.user = request.user
+            
+            shipping_user.save()
+            
+            
+            return redirect('dashboard')
+        
+    context = {'form':form}
+    
+    return render(request,'account/manage-shipping.html',context=context)
+            
+            
+     
+    
+    
+      
