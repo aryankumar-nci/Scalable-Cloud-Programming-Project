@@ -27,7 +27,7 @@ class CreateUserForm(UserCreationForm):
         
         
         
-     # Email Validations   
+    # Email Validations   
     def clean_email(self):
         
         email = self.cleaned_data.get("email")
@@ -59,6 +59,13 @@ class UpdateUserForm(forms.ModelForm):
     
     password = None
     
+    class Meta:
+        
+        model = User
+        
+        fields = ['username','email']
+        exclude = ['password1','password2'] 
+    
      # accessing fields that are defined in user models.    
     def __init__(self, *args , **kwargs):
         super(UpdateUserForm,self).__init__ (*args, **kwargs)
@@ -66,14 +73,24 @@ class UpdateUserForm(forms.ModelForm):
         # makes email field as required.
         self.fields['email'].required = True
     
-    class Meta:
+    
+    
+     # Email Validations form  
+    def clean_email(self):
         
-        model = User
+        email = self.cleaned_data.get("email")
         
-        fields = ['username','email']
-        exclude = ['password1','password2']    
+        if User.objects.filter(email=email).exclude(pk=self.instance.pk).exists():
+            
+            raise forms.ValidationError('This email is invalid !')
+        
+        # len function updated
+        if len(email)>=350:
+            raise forms.ValidationError('This email is too long')
 
-
+        # saves email to the database.
+        return email
+        
 
 
 
