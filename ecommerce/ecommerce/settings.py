@@ -46,7 +46,9 @@ INSTALLED_APPS = [
     
     'mathfilters', #mathfilter 
     
-    'crispy_forms' #django crispy-forms
+    'crispy_forms', #django crispy-forms
+    
+    'payment', # django app
        
 ]
 
