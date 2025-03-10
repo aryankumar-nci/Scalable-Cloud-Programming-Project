@@ -165,3 +165,10 @@ EMAIL_USE_TLS ='True'
 EMAIL_HOST_USER = 'aryannci2024@gmail.com' # host email that sends the password reset email.
 EMAIL_HOST_PASSWORD = 'kgqunysxddiaygiy'
 
+
+
+
+
+# QR Code API Hosted on EC2
+QR_CODE_API_URL = "http://54.154.139.81:5000/qr_code?id="
+

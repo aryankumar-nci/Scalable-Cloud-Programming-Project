@@ -13,4 +13,11 @@ urlpatterns = [
      # filters each product by individual category.
      path('search/<slug:category_slug>/', views.list_category, name='list-category'),
      
+     #QR CODE API
+     path("generate-qr-code/", views.generate_qr_code, name="generate-qr-code"),
+     
 ]
+
+
+
+
