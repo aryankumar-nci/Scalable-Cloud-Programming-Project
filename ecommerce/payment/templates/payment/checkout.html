@@ -134,36 +134,54 @@
 
 
     <!-- Ajax integration -->
-    <script>
-        // to complete checkout
-        $(document).on('submit', function(e) {
-            e.preventDefault();
-    
-            $.ajax({
-                type: 'POST',
-                url: '{% url "complete-order" %}',
-                data: {
-                    name: $('#name').val(),
-                    email: $('#email').val(),
-                    address1: $('#address1').val(),
-                    address2: $('#address2').val(),
-                    city: $('#city').val(),
-                    state: $('#state').val(),
-                    zipcode: $('#zipcode').val(),
-                    csrfmiddlewaretoken: "{{ csrf_token }}",
-                    action: 'post'
-                },
-                success: function(json) {
-                    // Redirect to the correct order receipt page
-                    window.location.replace("/payment/order-receipt/" + json.order_id + "/");
-                },
-                error: function(xhr, errmsg, err) {
-                    alert("There was an error processing your order.");
-                }
-            });
+    <!-- Include SweetAlert2 -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<script>
+    // Complete checkout with confirmation message
+    $(document).on('submit', function(e) {
+        e.preventDefault();
+
+        $.ajax({
+            type: 'POST',
+            url: '{% url "complete-order" %}',
+            data: {
+                name: $('#name').val(),
+                email: $('#email').val(),
+                address1: $('#address1').val(),
+                address2: $('#address2').val(),
+                city: $('#city').val(),
+                state: $('#state').val(),
+                zipcode: $('#zipcode').val(),
+                csrfmiddlewaretoken: "{{ csrf_token }}",
+                action: 'post'
+            },
+            success: function(json) {
+                // Show order confirmation message
+                Swal.fire({
+                    title: "Order Placed!",
+                    text: "Your order has been successfully placed.",
+                    icon: "success",
+                    confirmButtonText: "View Receipt"
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        // Redirect to the order receipt page
+                        window.location.replace("/payment/order-receipt/" + json.order_id + "/");
+                    }
+                });
+            },
+            error: function(xhr, errmsg, err) {
+                Swal.fire({
+                    title: "Error!",
+                    text: "Something went wrong while placing your order.",
+                    icon: "error",
+                    confirmButtonText: "Try Again"
+                });
+            }
         });
-    </script>
-    
+    });
+</script>
+
     
 
 {% endblock %}
