@@ -21,15 +21,16 @@
             <p><strong>Shipping Address:</strong><br>{{ order.shipping_address|linebreaks }}</p>
         </div>
 
+        <h4>Ordered Items</h4>
         <table class="order-items" width="100%">
             <tr>
-                <th>Product</th>
+                <th>Product Name</th>
                 <th>Quantity</th>
                 <th>Price</th>
             </tr>
             {% for item in order_items %}
             <tr>
-                <td>{{ item.product.name }}</td>
+                <td>{{ item.Product.title }}</td>  <!-- Correct way to get Product Name -->
                 <td>{{ item.quantity }}</td>
                 <td>${{ item.price }}</td>
             </tr>
