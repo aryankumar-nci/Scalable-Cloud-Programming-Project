@@ -1,0 +1,46 @@
+{% include "store/base.html" %}
+{% block content %}
+
+<style>
+    body { background-color: gray; }
+    .receipt-container { max-width: 600px; background: white; padding: 20px; border-radius: 10px; box-shadow: 0px 0px 10px rgba(0,0,0,0.1); }
+    h3 { text-align: center; }
+    .order-info { margin-bottom: 20px; }
+    .order-items th, .order-items td { padding: 8px; border-bottom: 1px solid #ddd; text-align: left; }
+</style>
+
+<body>
+    <div class="container receipt-container mt-5">
+        <h3>Order Receipt</h3>
+        <hr>
+
+        <div class="order-info">
+            <p><strong>Order ID:</strong> #{{ order.id }}</p>
+            <p><strong>Name:</strong> {{ order.full_name }}</p>
+            <p><strong>Email:</strong> {{ order.email }}</p>
+            <p><strong>Shipping Address:</strong><br>{{ order.shipping_address|linebreaks }}</p>
+        </div>
+
+        <table class="order-items" width="100%">
+            <tr>
+                <th>Product</th>
+                <th>Quantity</th>
+                <th>Price</th>
+            </tr>
+            {% for item in order_items %}
+            <tr>
+                <td>{{ item.product.name }}</td>
+                <td>{{ item.quantity }}</td>
+                <td>${{ item.price }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+
+        <h4 class="text-right mt-3">Total: ${{ order.amount_paid }}</h4>
+        <hr>
+
+        <a href="{% url 'track-orders' %}" class="btn btn-primary">Track Orders</a>
+    </div>
+</body>
+
+{% endblock %}

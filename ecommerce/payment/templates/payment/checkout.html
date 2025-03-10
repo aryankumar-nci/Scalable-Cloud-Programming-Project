@@ -136,60 +136,34 @@
     <!-- Ajax integration -->
     <script>
         // to complete checkout
-        $(document).on('submit',function(e){
-
+        $(document).on('submit', function(e) {
             e.preventDefault();
     
             $.ajax({
-    
-                type:'POST',
+                type: 'POST',
                 url: '{% url "complete-order" %}',
                 data: {
-                    
-
-                    name : $('#name').val(),
+                    name: $('#name').val(),
                     email: $('#email').val(),
-                    address1:$('#address1').val(),
-                    address2:$('#address2').val(),
-                    city:$('#city').val(),
-
-                    state:$('#state').val(),
-                    zipcode:$('#zipcode').val(),
-
-
-
-                    csrfmiddlewaretoken : "{{csrf_token}}",
-                    action : 'post'
-    
+                    address1: $('#address1').val(),
+                    address2: $('#address2').val(),
+                    city: $('#city').val(),
+                    state: $('#state').val(),
+                    zipcode: $('#zipcode').val(),
+                    csrfmiddlewaretoken: "{{ csrf_token }}",
+                    action: 'post'
                 },
-    
-                success : function(json){
-
-                
-
-                    window.location.replace("{ % url 'payment-success' %}");
-    
+                success: function(json) {
+                    // Redirect to the correct order receipt page
+                    window.location.replace("/payment/order-receipt/" + json.order_id + "/");
                 },
-    
-                error: function(xhr, errmsg, err){
-
-                    window.location.replace("{ % url 'payment-failed' %}");
-    
+                error: function(xhr, errmsg, err) {
+                    alert("There was an error processing your order.");
                 }
-    
             });
-        })
-
-
-
-
+        });
+    </script>
     
-
-
-   </script>
-
-
-
-
+    
 
 {% endblock %}

@@ -44,7 +44,7 @@ urlpatterns = [
     
     #paymet app
     
-    path('payment/',include('payment.urls')),
+    path('payment/', include('payment.urls')), 
     
    
     

@@ -236,17 +236,10 @@ def manage_shipping(request):
  
 @login_required(login_url='my-login')           
 def track_orders(request):
+    if request.user.is_authenticated:
+        orders = Order.objects.filter(user=request.user).order_by('-date_ordered')
+    else:
+        orders = []
     
-    try:
-        orders = OrderItem.objects.filter(user=request.user)
-        context = {'orders':orders}
-        
-        return render(request,'account/track-orders.html',context=context) 
-    
-    except:
-        
-         return render(request,'account/track-orders.html')           
-    
-    return render(request,'account/track-orders.html') 
-    
+    return render(request, 'account/track-orders.html', {'orders': orders})
       
