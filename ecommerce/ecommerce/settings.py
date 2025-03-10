@@ -49,6 +49,8 @@ INSTALLED_APPS = [
     'crispy_forms', #django crispy-forms
     
     'payment', # django app
+    
+    'storages',
        
 ]
 
@@ -171,4 +173,75 @@ EMAIL_HOST_PASSWORD = 'kgqunysxddiaygiy'
 
 # QR Code API Hosted on EC2
 QR_CODE_API_URL = "http://54.154.139.81:5000/qr_code?id="
+
+
+
+
+
+
+
+
+
+
+
+
+
+# AWS configuration========================================================================
+
+AWS_ACCESS_KEY_ID = 'AKIATJHQDWGQ4A3HSZW6'
+AWS_SECRET_ACCESS_KEY = '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'
+
+
+# AWS S3 Integration
+
+AWS_STORAGE_BUCKET_NAME = 'cloudkart-project'
+
+#Storage configuration for S3
+
+STORAGES = {
+    
+    # Media file (image) management
+
+    "default": {
+        "BACKEND": "storages.backends.s3boto3.S3StaticStorage",
+    },
+    
+    # CSS and JS file management
+
+    "staticfiles": {
+        "BACKEND": "storages.backends.s3boto3.S3StaticStorage",
+        
+    },
+    
+}
+
+
+AWS_S3_CUSTOM_DOMAIN = '%s.s3.amazonaws.com' % AWS_STORAGE_BUCKET_NAME
+
+AWS_S3_FILE_OVERWRITE = False
+
+
+
+
+'''
+# RDS (Database) configuration settings:
+DATABASES = {
+
+    'default': {
+
+        'ENGINE': 'django.db.backends.postgresql',
+
+        'NAME': '', # Enter your Database name HERE
+
+        'USER': '', # Enter your Database username HERE
+
+        'PASSWORD': '', # Enter your Database password HERE
+
+        'HOST': '', # Enter your Database host/endpoint HERE
+
+        'PORT': '5432',
+    }
+}
+'''
+
 
