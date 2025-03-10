@@ -44,7 +44,7 @@
     <strong><i class="fa fa-list-alt" aria-hidden="true"></i> Order ID #{{ order.id }}</strong>
     <br><br>
     <p><strong>Date Ordered:</strong> {{ order.date_ordered }}</p>
-    <p><strong>Total Paid:</strong> ${{ order.amount_paid }}</p>
+    <p><strong>Total Paid:</strong> €{{ order.amount_paid }}</p>
     <p><strong>Shipping Address:</strong><br>{{ order.shipping_address|linebreaks }}</p>
 
     <a href="{% url 'order-receipt' order.id %}" class="btn btn-primary">View Receipt</a>
