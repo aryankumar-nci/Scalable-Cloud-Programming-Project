@@ -137,6 +137,9 @@
     <!-- Include SweetAlert2 -->
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
+<!-- Include SweetAlert2 -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
 <script>
     // Complete checkout with confirmation message
     $(document).on('submit', function(e) {
@@ -157,10 +160,10 @@
                 action: 'post'
             },
             success: function(json) {
-                // Show order confirmation message
+                // Show Cash on Delivery confirmation message
                 Swal.fire({
                     title: "Order Placed!",
-                    text: "Your order has been successfully placed.",
+                    text: "Your order has been successfully placed with Cash on Delivery (COD). It will be delivered within 2-3 business days.",
                     icon: "success",
                     confirmButtonText: "View Receipt"
                 }).then((result) => {
@@ -181,6 +184,7 @@
         });
     });
 </script>
+
 
     
 
