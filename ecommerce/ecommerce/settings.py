@@ -96,6 +96,8 @@ WSGI_APPLICATION = 'ecommerce.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
+'''
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
@@ -103,7 +105,7 @@ DATABASES = {
     }
 }
 
-
+'''
 # Password validation
 # https://docs.djangoproject.com/en/5.1/ref/settings/#auth-password-validators
 
@@ -222,26 +224,24 @@ AWS_S3_FILE_OVERWRITE = False
 
 
 
-
-'''
-# RDS (Database) configuration settings:
+# RDS (Database) configuration settings:---------------------------------
 DATABASES = {
 
     'default': {
 
         'ENGINE': 'django.db.backends.postgresql',
 
-        'NAME': '', # Enter your Database name HERE
+        'NAME': 'cloudkartdatabase', 
 
-        'USER': '', # Enter your Database username HERE
+        'USER': 'aryandb', 
 
-        'PASSWORD': '', # Enter your Database password HERE
+        'PASSWORD': 'cloudkartproject', 
 
-        'HOST': '', # Enter your Database host/endpoint HERE
+        'HOST': 'my-database.cpca88gcino4.eu-west-1.rds.amazonaws.com', 
 
         'PORT': '5432',
     }
 }
-'''
+
 
 
