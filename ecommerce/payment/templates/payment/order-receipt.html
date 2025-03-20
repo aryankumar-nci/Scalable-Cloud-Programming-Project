@@ -7,6 +7,7 @@
     h3 { text-align: center; }
     .order-info { margin-bottom: 20px; }
     .order-items th, .order-items td { padding: 8px; border-bottom: 1px solid #ddd; text-align: left; }
+    .btn-container { text-align: center; margin-top: 20px; }
 </style>
 
 <body>
@@ -40,7 +41,14 @@
         <h4 class="text-right mt-3">Total: €{{ order.amount_paid }}</h4>
         <hr>
 
-        <a href="{% url 'track-orders' %}" class="btn btn-primary">Track Orders</a>
+        <div class="btn-container">
+            <a href="{% url 'track-orders' %}" class="btn btn-primary">Track Orders</a>
+
+            <!-- 🔹 "Download Receipt (PDF)" Button -->
+            <a href="{% url 'download-order-receipt' order.id %}" class="btn btn-success">
+                <i class="fa fa-download"></i> Download Receipt (PDF)
+            </a>
+        </div>
     </div>
 </body>
 
