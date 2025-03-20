@@ -11,7 +11,24 @@ def store(request):
     #brings all product from db to the frontpage
     all_products = Product.objects.all()
     
-    context= {'my_products': all_products}
+    # Fetch a random quote from ZenQuotes API (No API key required)
+    quote_data = {}
+    try:
+        response = requests.get("https://zenquotes.io/api/random")
+        if response.status_code == 200:
+            data = response.json()
+            quote_data = {
+                "content": data[0]['q'],
+                "author": data[0]['a']
+            }
+    except requests.RequestException:
+        quote_data = {"content": "Error fetching quote", "author": "Unknown"}
+
+    context = {
+        'my_products': all_products,
+        'quote': quote_data.get("content", "No quote available"),
+        'author': quote_data.get("author", "Unknown"),
+    }
     
     return render(request, 'store/store.html', context)
 
